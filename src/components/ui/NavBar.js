@@ -1,16 +1,23 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
 export const Navbar = () => {
 
     const usuario = JSON.parse(localStorage.getItem("usuario"))
+    let history = useHistory();
 
     const isSecretario = () => {
         console.log(usuario)
+        if(usuario == null){
+            
+            history.push("/login");
+            return false;
+        }
         if(usuario.identificador == "1"){
             return true;
         }
-        
+    
     }
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
